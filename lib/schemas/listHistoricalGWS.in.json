@@ -1,0 +1,54 @@
+{
+    "type": "object",
+    "properties": {
+        "Authorization": {
+            "type": "string"
+        },
+        "wine_id": {
+            "type": "array",
+            "items": {
+                "type": "integer"
+            }
+        },
+        "vintage": {
+            "type": "string"
+        },
+        "color": {
+            "type": "string",
+            "enum": [
+                "red",
+                "white",
+                "pink"
+            ]
+        },
+        "is_primeurs": {
+            "type": "boolean",
+            "default": false
+        },
+        "lwin": {
+            "type": "string"
+        },
+        "lwin_11": {
+            "type": "string"
+        },
+        "limit": {
+            "type": "integer",
+            "minimum": 0,
+            "default": 100
+        },
+        "offset": {
+            "type": "integer",
+            "minimum": 0
+        },
+        "ordering": {
+            "type": "string",
+            "enum": [
+                "date",
+                "-date",
+                "score",
+                "-score"
+            ],
+            "default": "-date"
+        }
+    }
+}

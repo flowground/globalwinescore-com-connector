@@ -1,0 +1,121 @@
+{
+    "title": "GlobalWineScore",
+    "description": "\n\nThe GlobalWineScore API is designed as a RESTful API, providing several resources and methods depending on your usage plan.\n\nFor further information please refer to <a href=\"https://www.globalwinescore.com/plans\" target=\"_blank\">our plans</a>.\n\n# Authentication\nThe API uses token-based authentication.\nIn order to authenticate your requests, you need to include a specific header in each of your requests:\n\n```\nAuthorization: Token {YOUR-API-TOKEN}\n```\n\nIf you don't have a token yet, you need to apply for one [here](https://www.globalwinescore.com/api/) or drop us an email at <a href=\"mailto:api@globalwinescore.com\">api@globalwinescore.com</a>\n\nYour personal token can be found under the <a href=\"https://www.globalwinescore.com/account/api/\" target=\"_blank\">My account > API</a> section of the GlobalWineScore website\n\n# Format\nThe API provides several rendering formats which you can control using the `Accept` header or `format` query parameter.\n\n- JSON (default): no header or `Accept: application/json`\n- XML: `Accept: application/xml`\n\n# Error handling\n\nWhether a request succeeded is indicated by the HTTP status code. A 2xx status code indicates success, whereas a 4xx status code indicates failure.\n\nWhen a request fails, the response body is still JSON, but always contains a `detail` field with a description of the error, which you can inspect for debugging.\n\nFor example, trying to access the API without proper authentication will return code 403 along with the message:\n\n`{\"detail\": \"Authentication credentials were not provided.\"}`\n\nFound a bug ? send us an email at <a href=\"mailto:api@globalwinescore.com\">api@globalwinescore.com</a>\n\n# Ordering\n\nAt the moment, GlobalWineScores may be sorted by `date` and `score`. Use \"-\"\nto sort in descending order.\n\n# Continuous synchronization\n\nIf you need to synchronize your database with our API, you can query our API using `?ordering=-date` to get the newest scores first, which means you won't have to crawl the whole catalog every time :-)\n\n# Quick search interface\nIf you need to search our catalog (e.g. to align it with yours), we're providing you with a handy interface accessible here: <a href=\"https://api.globalwinescore.com/search/\" target=\"_blank\">https://api.globalwinescore.com/search/</a>\n\nYou need to be logged in (email/password) to access this page, but other than that you can share it with anyone in your team and start searching right away !\n\n# Resources\n\nThe details about available endpoints can be found below.\nYou can click on each endpoint to find information about their parameters.\n",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/globalwinescore.com/8234aab51481d37a30757d925b7f4221a659427e/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://api.globalwinescore.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "TokenAuthentication": {
+                "label": "Authorization (TokenAuthentication)",
+                "viewClass": "TextFieldView",
+                "note": "See Authentication section above"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "listHistoricalGWS": {
+            "main": "./lib/actions/listHistoricalGWS.js",
+            "title": "List all historical GWS",
+            "description": "Returns all available GWS",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/listHistoricalGWS.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "summary_globalwinescores_": {
+            "main": "./lib/actions/summary_globalwinescores_.js",
+            "title": "summary_globalwinescores_",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/summary_globalwinescores_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "description_globalwinescores_": {
+            "main": "./lib/actions/description_globalwinescores_.js",
+            "title": "description_globalwinescores_",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/description_globalwinescores_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "get_globalwinescores_latest_": {
+            "main": "./lib/actions/get_globalwinescores_latest_.js",
+            "title": "List all latest GWS",
+            "description": "Returns the latest GWS available per wine/vintage",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/get_globalwinescores_latest_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "summary_globalwinescores_latest_": {
+            "main": "./lib/actions/summary_globalwinescores_latest_.js",
+            "title": "summary_globalwinescores_latest_",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/summary_globalwinescores_latest_.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
